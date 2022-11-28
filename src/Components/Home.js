@@ -1,28 +1,27 @@
-import React from 'react'
+import React from 'react';
+import {v4 as uuidv4} from 'uuid';
 import Todos from './Todos'
 
 import style from './home.module.css'
 import NewTodo from './NewTodo'
-
-const dummyTodos =[
-    {
-        id : 1,
-        title : "Todo 1",
-        desc : "Here is todo 1",
-    },
-    {
-        id : 2,
-        title : "Todo 2",
-        desc : "Here is todo 2",
-    },
-]
+import { useState } from 'react'
+import { v4 } from 'uuid'
 
 const Home = () => {
+
+  const[todos,setTodos] = useState([])
+
+  const handleAddTodo =(todo) =>{
+    setTodos((prevTodos) =>{
+      return [...prevTodos, {id: uuidv4(),todo}]
+    })
+  }
+
   return (
     <div className={style.container}>
       <h1 style={{color : "white"}}>ToDo App</h1>
-      <NewTodo />
-        < Todos todos ={dummyTodos} />
+      <NewTodo onAddTodo={handleAddTodo}/>
+        < Todos todos ={todos} />
     </div>
   )
 }

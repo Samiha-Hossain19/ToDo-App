@@ -1,5 +1,5 @@
 import React from 'react'
-import style from './todo.module.css';
+import style from './todo.module.css'
 
 const Todo = (props) => {
   const {title, id, desc } = props.todo
